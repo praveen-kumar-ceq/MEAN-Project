@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 70px auto;
+  height: 100vh;
+  gap: 10px;
+}
+
+#content {
+  margin-left: 75px;
+}
+
+.login {
+  background-color: #29297f;
+  color: #a1b1bf;
+  cursor: pointer;
+}
+
+.login:hover {
+  cursor: pointer;
+}

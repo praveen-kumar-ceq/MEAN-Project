@@ -1,0 +1,12 @@
+<table class="table_Users">
+  <tr class="table_row">
+    <td>Name</td>
+    <td>Price</td>
+    <td>rating</td>
+  </tr>
+  <tr *ngFor="let user of users" class="table_row">
+    <td>{{ user.name }}</td>
+    <td>{{ user.price }}</td>
+    <td>{{ user.rating }}</td>
+  </tr>
+</table>

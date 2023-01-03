@@ -1,0 +1,54 @@
+<div>
+  <form #loginform="ngForm" (ngSubmit)="addItem()">
+    <div class="form-group p-3">
+      <input
+        #loginInfoEmail="ngModel"
+        type="email"
+        name="email"
+        class="form-control"
+        placeholder="Email"
+        [(ngModel)]="loginInfo.email"
+        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
+        required
+      />
+    </div>
+    <div
+      *ngIf="loginInfoEmail.touched && loginInfoEmail.invalid"
+      class="alert alert-danger"
+    >
+      Email Should be Valid input
+    </div>
+    <div class="form-group p-3">
+      <input
+        #loginInfoPassword="ngModel"
+        type="text"
+        name="password"
+        class="form-control"
+        placeholder="password"
+        [(ngModel)]="loginInfo.password"
+        required
+      />
+    </div>
+    <div
+      *ngIf="loginInfoPassword.touched && loginInfoPassword.invalid"
+      class="alert alert-danger"
+    >
+      password field is required
+    </div>
+    <div *ngIf="error">
+      <p>{{ error }}</p>
+    </div>
+    <div class="padding-right d-flex justify-content-end">
+      <a routerLink="/signup">create new User</a>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loginform.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

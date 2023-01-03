@@ -1,0 +1,62 @@
+{{ bookinfo | json }}
+<div class="form_container">
+  <form class="form" #usersForm="ngForm" (ngSubmit)="createUser(usersForm)">
+    <div class="form-group">
+      <input
+        #bookinfoName="ngModel"
+        class="form-control"
+        type="text"
+        placeholder="name"
+        name="name"
+        [(ngModel)]="bookinfo.name"
+        minlength="8"
+        maxlength="20"
+        required
+        (blur)="checkUser(bookinfoName)"
+      />
+    </div>
+    <!-- <div>{{ bookinfoName.errors | json }}</div> -->
+    <div
+      *ngIf="nameAvailable"
+      [class]="
+        nameAvailable.status ? 'alert alert-success' : 'alert alert-danger'
+      "
+    >
+      {{ nameAvailable.message }}
+    </div>
+    <div class="form-group">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="price"
+        name="price"
+        [(ngModel)]="bookinfo.price"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="rating"
+        name="rating"
+        max="5"
+        min="1"
+        [(ngModel)]="bookinfo.rating"
+        required
+      />
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="usersForm.invalid"
+      >
+        submit
+      </button>
+    </div>
+    <div *ngIf="usersForm.pristine && status" class="alert alert-success">
+      <p>{{ status.status }}</p>
+    </div>
+  </form>
+</div>
