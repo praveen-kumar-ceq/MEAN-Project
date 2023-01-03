@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { StoreModule,ActionReducerMap, ActionReducer, MetaReducer  } from '@ngrx/store';
+import { counterReducer } from './counter.reducer';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -13,7 +14,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { MyCounterComponent } from './my-counter/my-counter.component';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
+// const reducers:{count:counterReducer}
+
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({keys: ['todos']})(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +31,7 @@ import { SignupComponent } from './signup/signup.component';
     UsersComponent,
     LoginComponent,
     SignupComponent,
+    MyCounterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +41,7 @@ import { SignupComponent } from './signup/signup.component';
     HttpClientModule,
     MatTableModule,
     FormsModule,
+    StoreModule.forRoot({ count: counterReducer })
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { PostComponent } from './post/post.component';
 import { SignupComponent } from './signup/signup.component';
 import { UsersComponent } from './users/users.component';
-
+import { MyCounterComponent } from './my-counter/my-counter.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,7 +25,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
-  },
+  },{
+    path:'counter',
+    component:MyCounterComponent
+  }
 ];
 
 @NgModule({
